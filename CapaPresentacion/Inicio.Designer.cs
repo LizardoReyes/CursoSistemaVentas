@@ -47,6 +47,7 @@ namespace CapaPresentacion
             // menu
             // 
             this.menu.BackColor = System.Drawing.Color.White;
+            this.menu.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menusuarios,
@@ -59,7 +60,7 @@ namespace CapaPresentacion
             this.menuacercade});
             this.menu.Location = new System.Drawing.Point(0, 119);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1733, 85);
+            this.menu.Size = new System.Drawing.Size(1733, 83);
             this.menu.TabIndex = 0;
             this.menu.Text = "menu";
             // 
@@ -196,9 +197,9 @@ namespace CapaPresentacion
             // contenedor
             // 
             this.contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contenedor.Location = new System.Drawing.Point(0, 204);
+            this.contenedor.Location = new System.Drawing.Point(0, 202);
             this.contenedor.Name = "contenedor";
-            this.contenedor.Size = new System.Drawing.Size(1733, 799);
+            this.contenedor.Size = new System.Drawing.Size(1733, 801);
             this.contenedor.TabIndex = 3;
             // 
             // Inicio
@@ -211,7 +212,8 @@ namespace CapaPresentacion
             this.Controls.Add(this.menu);
             this.Controls.Add(this.menutitulo);
             this.Name = "Inicio";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Sistema de Ventas";
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);
