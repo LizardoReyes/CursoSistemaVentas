@@ -44,20 +44,20 @@ namespace CapaPresentacion
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label1.BackColor = System.Drawing.Color.SteelBlue;
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
-            this.label2.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label2.BackColor = System.Drawing.Color.SteelBlue;
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Name = "label2";
             // 
             // iconPictureBox1
             // 
-            this.iconPictureBox1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.iconPictureBox1.BackColor = System.Drawing.Color.SteelBlue;
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Store;
             this.iconPictureBox1.IconColor = System.Drawing.Color.White;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
