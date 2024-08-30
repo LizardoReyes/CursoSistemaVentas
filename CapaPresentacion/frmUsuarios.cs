@@ -54,6 +54,26 @@ namespace CapaPresentacion
             cboBusqueda.DisplayMember = "Texto";
             cboBusqueda.ValueMember = "Valor";
             cboBusqueda.SelectedIndex = 0;
+
+            // Mostrar todos los usuarios
+            List<Usuario> listaUsuario = new CN_Usuario().Listar();
+            foreach (Usuario usuario in listaUsuario)
+            {
+                dgvdata.Rows.Add(
+                    new object[] {
+                        "",
+                        usuario.IdUsuario,
+                        usuario.Documento,
+                        usuario.NombreCompleto,
+                        usuario.Correo,
+                        usuario.Clave,
+                        usuario.oRol.IdRol,
+                        usuario.oRol.Descripcion,
+                        usuario.Estado ? 1: 0,
+                        usuario.Estado ? "Activo": "Inactivo"
+                    }
+                );
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -79,6 +99,7 @@ namespace CapaPresentacion
         private void Limpiar()
         {
             // borramos los campos
+            txtIndice.Text = "-1";
             txtId.Text = "0";
             txtDocumento.Text = "";
             txtNombreCompleto.Text = "";
@@ -87,6 +108,40 @@ namespace CapaPresentacion
             txtConfirmarClave.Text = "";
             cboRol.SelectedIndex = 0;
             cboEstado.SelectedIndex = 0;
+        }
+
+        private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.dgvdata.Columns[e.ColumnIndex].Name == "btnSeleccionar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                var w = Properties.Resources.check20.Width;
+                var h = Properties.Resources.check20.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(Properties.Resources.check20, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
+        }
+
+        private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.dgvdata.Columns[e.ColumnIndex].Name == "btnSeleccionar" && e.RowIndex >= 0)
+            {
+                int indice = e.RowIndex;
+                txtIndice.Text = indice.ToString();
+                txtId.Text = dgvdata.Rows[indice].Cells["Id"].Value.ToString();
+                txtDocumento.Text = dgvdata.Rows[indice].Cells["Documento"].Value.ToString();
+                txtNombreCompleto.Text = dgvdata.Rows[indice].Cells["NombreCompleto"].Value.ToString();
+                txtCorreo.Text = dgvdata.Rows[indice].Cells["Correo"].Value.ToString();
+                txtClave.Text = dgvdata.Rows[indice].Cells["Clave"].Value.ToString();
+                txtConfirmarClave.Text = dgvdata.Rows[indice].Cells["Clave"].Value.ToString();
+
+                cboRol.SelectedIndex = cboRol.FindString(dgvdata.Rows[indice].Cells["Rol"].Value.ToString());
+                cboEstado.SelectedIndex = cboEstado.FindString(dgvdata.Rows[indice].Cells["Estado"].Value.ToString());
+            }
         }
     }
 }
