@@ -19,9 +19,19 @@ namespace CapaPresentacion
         private static IconMenuItem MenuActivo = null;
         private static Form FormularioActivo = null;
 
-        public Inicio(Usuario objUsuario)
+        public Inicio(Usuario objUsuario = null)
         {
-            usuarioActual = objUsuario;
+            if(objUsuario == null)
+            {
+                usuarioActual = new Usuario() {
+                    NombreCompleto = "ADMIN PREF",
+                    IdUsuario = 1
+                };
+            } else
+            {
+                usuarioActual = objUsuario;
+            }
+
             InitializeComponent();
         }
 
