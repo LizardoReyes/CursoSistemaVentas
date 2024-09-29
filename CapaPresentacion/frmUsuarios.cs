@@ -78,22 +78,46 @@ namespace CapaPresentacion
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            dgvdata.Rows.Add(
-                new object[] {
-                    "",
-                    txtId.Text,
-                    txtDocumento.Text,
-                    txtNombreCompleto.Text,
-                    txtCorreo.Text,
-                    txtClave.Text,
-                    ((OpcionCombo) cboRol.SelectedItem).Valor.ToString(),
-                    ((OpcionCombo) cboRol.SelectedItem).Texto.ToString(),
-                    ((OpcionCombo) cboEstado.SelectedItem).Valor.ToString(),
-                    ((OpcionCombo) cboEstado.SelectedItem).Texto.ToString(),
-                }
-            );
+            string mensaje = "";
 
-            Limpiar();
+            Usuario objUsuario = new Usuario()
+            {
+                IdUsuario = Convert.ToInt32(txtId.Text),
+                Documento = txtDocumento.Text,
+                NombreCompleto = txtNombreCompleto.Text,
+                Correo = txtCorreo.Text,
+                Clave = txtClave.Text,
+                oRol = new Rol()
+                {
+                    IdRol = Convert.ToInt32(((OpcionCombo)cboRol.SelectedItem).Valor),
+                    Descripcion = ((OpcionCombo)cboRol.SelectedItem).Texto
+                },
+                Estado = Convert.ToInt32(((OpcionCombo)cboEstado.SelectedItem).Valor) == 1 ? true : false
+            };
+
+            int idUsuarioGenerado = new CN_Usuario().Registrar(objUsuario, out mensaje);
+            if (idUsuarioGenerado != 0)
+            {
+                dgvdata.Rows.Add(
+                    new object[] {
+                        "",
+                        txtId.Text,
+                        txtDocumento.Text,
+                        txtNombreCompleto.Text,
+                        txtCorreo.Text,
+                        txtClave.Text,
+                        ((OpcionCombo) cboRol.SelectedItem).Valor.ToString(),
+                        ((OpcionCombo) cboRol.SelectedItem).Texto.ToString(),
+                        ((OpcionCombo) cboEstado.SelectedItem).Valor.ToString(),
+                        ((OpcionCombo) cboEstado.SelectedItem).Texto.ToString(),
+                    }
+                );
+                Limpiar();
+            } else
+            {
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void Limpiar()
