@@ -25,7 +25,7 @@ namespace CapaPresentacion
             {
                 usuarioActual = new Usuario() {
                     NombreCompleto = "ADMIN PREF",
-                    IdUsuario = 1
+                    IdUsuario = 2
                 };
             } else
             {

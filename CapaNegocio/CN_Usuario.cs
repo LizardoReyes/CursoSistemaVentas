@@ -43,7 +43,7 @@ namespace CapaNegocio
             return objcd_usuario.Registrar(obj, out mensaje);
         }
 
-        public bool Actualizar(Usuario obj, out string mensaje)
+        public bool Editar(Usuario obj, out string mensaje)
         {
             mensaje = "";
             if (obj.NombreCompleto == "")
