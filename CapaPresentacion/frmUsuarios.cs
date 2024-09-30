@@ -56,8 +56,8 @@ namespace CapaPresentacion
             cboBusqueda.SelectedIndex = 0;
 
             // Mostrar todos los usuarios
-            List<Usuario> listaUsuario = new CN_Usuario().Listar();
-            foreach (Usuario usuario in listaUsuario)
+            List<Usuario> lista = new CN_Usuario().Listar();
+            foreach (Usuario usuario in lista)
             {
                 dgvdata.Rows.Add(
                     new object[] {
@@ -250,6 +250,11 @@ namespace CapaPresentacion
             {
                 fila.Visible = true;
             }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
     }
 }
